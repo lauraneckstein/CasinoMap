@@ -24,6 +24,27 @@
             height: 100%;
             width: 100%;
         }
+        
+                }
+        .info {
+    padding: 9px 8px;
+    font-size: 14px;
+    font-family: 'Oswald', sans-serif;
+    font-style: 300;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+   
+}
+.info h4 {
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.87);
+    padding: 10px;
+    color: black;
+    font-family: 'Oswald', sans-serif;
+    font-style: bold;
+    font-size: 18px;
+}
 </style>
 </head>
 
@@ -45,11 +66,26 @@
 			fullscreenControl: true
 
 	});
+	
+	var info = L.control();
+
+		info.onAdd = function (map) {
+			this._div = L.DomUtil.create('div','info');
+			this.update();
+			return this._div;
+		};
+
+		info.update = function (props) {
+			this._div.innerHTML = '<h4>American Indian and Alaskan Native Casinos <br> Produced by <a href="http://lauraneckstein.com">Laura Newman Eckstein</a></h4>';
+		};
+
+		info.addTo(map);
+
 
 var watercolor = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {
   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
 }).addTo(map);
-var lines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.jpg', { attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+var lines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.jpg', { attribution: 'Data &copy; <a href="http://census.gov/">US Census Bureau</a> and <a href="http://www.nigc.gov/">National Indian Gaming Commission</a>'
 }).addTo(map);
 var labels = L.tileLayer('http://{s}.tile.stamen.com/toner-labels/{z}/{x}/{y}.jpg').addTo(map);
 var osmGeocoder = new L.Control.OSMGeocoder();
